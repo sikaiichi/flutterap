@@ -45,6 +45,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
               hintText: "Enter your name",
               labelText: 'Name'
             ),
+            validator: (value) {  
+              if (value!.isEmpty) {  
+                return 'Please enter some text';  
+              }  
+              return null;  
+            },  
           ),
           TextFormField(
             decoration: const InputDecoration(
@@ -52,6 +58,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
               hintText: "Enter a phone number",
               labelText: 'Phone'
             ),
+            validator: (value) {  
+              if (value!.isEmpty) {  
+                return 'Please enter some text';  
+              }  
+              return null;  
+            },
           ),
           TextFormField(
             decoration: const InputDecoration(
@@ -59,12 +71,28 @@ class _MyCustomFormState extends State<MyCustomForm> {
               hintText: "Enter your date of birth",
               labelText: 'Dob'
             ),
+            validator: (value) {  
+              if (value!.isEmpty) {  
+                return 'Please enter some text';  
+              }  
+              return null;  
+            },
           ),
-          Container(
-            padding: const EdgeInsets.only(left: 150, top: 40),
-          child: new ElevatedButton(child : const Text("submit"),onPressed: null),)
-        ],
-      ),
-    );
-  }
-}
+          Container(  
+              padding: const EdgeInsets.only(left: 150.0, top: 40.0),  
+              child: new RaisedButton(  
+                child: const Text('Submit'),  
+                onPressed: () {  
+                  // It returns true if the form is valid, otherwise returns false  
+                  if (_formKey.currentState!.validate()) {  
+                    // If the form is valid, display a Snackbar.  
+                    Scaffold.of(context)  
+                        .showSnackBar(SnackBar(content: Text('Data is in processing.')));  
+                  }  
+                },  
+              )),  
+        ],  
+      ),  
+    );  
+  }  
+}  
